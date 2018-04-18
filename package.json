@@ -4,7 +4,7 @@
   "description": "API exposing endpoints for the sleep tracker app.",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "./node_modules/.bin/heroku local",
     "docs": "./node_modules/.bin/apidoc -i routes/ -o public/"
   },
   "engines": {
@@ -30,5 +30,8 @@
     "name": "Sleep Tracker API",
     "title": "Sleep Tracker API",
     "url": "https://sleep-tracker-api.herokuapp.com/api"
+  },
+  "devDependencies": {
+    "heroku": "^0.2.0"
   }
 }
