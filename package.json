@@ -1,0 +1,34 @@
+{
+  "name": "sleep-tracker-api",
+  "version": "1.0.0",
+  "description": "API exposing endpoints for the sleep tracker app.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "docs": "./node_modules/.bin/apidoc -i routes/ -o public/"
+  },
+  "engines": {
+    "node": "9.3.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mancristiana/sleep-tracker-api.git"
+  },
+  "author": "Cristiana Man",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mancristiana/sleep-tracker-api/issues"
+  },
+  "homepage": "https://github.com/mancristiana/sleep-tracker-api#readme",
+  "dependencies": {
+    "apidoc": "^0.17.6",
+    "body-parser": "^1.18.2",
+    "express": "^4.16.3",
+    "mongodb": "^3.0.7"
+  },
+  "apidoc": {
+    "name": "Sleep Tracker API",
+    "title": "Sleep Tracker API",
+    "url": "https://sleep-tracker-api.herokuapp.com/api"
+  }
+}
