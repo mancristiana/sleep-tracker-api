@@ -1,0 +1,385 @@
+define({ "api": [
+  {
+    "type": "post",
+    "url": "/sleep",
+    "title": "Add Sleep",
+    "name": "add_sleep",
+    "group": "Sleep",
+    "version": "1.0.0",
+    "description": "<p>This request creates a new sleep using the json body provided. An _id field is generated automatically. For consistency the json should include the parameters specified below. A return Json prividing the generated _id is returned</p>",
+    "parameter": {
+      "fields": {
+        "Requested Fields": [
+          {
+            "group": "Requested Fields",
+            "type": "String",
+            "optional": false,
+            "field": "date",
+            "description": "<p>Date (yyyy-mm-dd) of the sleep.</p>"
+          },
+          {
+            "group": "Requested Fields",
+            "type": "String",
+            "optional": false,
+            "field": "bedTime",
+            "description": "<p>Time (hh:mm) of the sleep.</p>"
+          },
+          {
+            "group": "Requested Fields",
+            "type": "number",
+            "optional": false,
+            "field": "interval",
+            "description": "<p>Time measured in hours of sleep.</p>"
+          },
+          {
+            "group": "Requested Fields",
+            "type": "String",
+            "optional": false,
+            "field": "type",
+            "description": "<p>We can specify what kind of sleep it was. For now, we should support one of [&quot;restless&quot;, &quot;normal&quot;].</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Post Example:",
+          "content": "{\n    \"date\": \"2018-04-02\",\n    \"bedTime\": \"21:30\",\n    \"interval\": 9,\n    \"type\": \"normal\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "fields": {
+        "Success 2xx": [
+          {
+            "group": "Success 2xx",
+            "optional": false,
+            "field": "201",
+            "description": "<p>Sleep Created</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 201 Created\nLocation : /<ObjectId>\n{\n  \"_id\" : \"5746d36bfa2cdf7c300bf61c\",\n  \"message\": \"Sleep added\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "400",
+            "description": "<p>Bad Request <br>Wrongly formated <code>json</code> was sent.</p>"
+          }
+        ],
+        "Error 5xx": [
+          {
+            "group": "Error 5xx",
+            "optional": false,
+            "field": "500",
+            "description": "<p>Internal Server Error</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 500 Internal Server Error\n{\n    \"error\": \"Internal Server Error\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "routes/sleep.js",
+    "groupTitle": "Sleep"
+  },
+  {
+    "type": "delete",
+    "url": "/sleep/id",
+    "title": "Delete Sleep",
+    "name": "delete_sleep",
+    "group": "Sleep",
+    "version": "1.0.0",
+    "description": "<p>This request deletes an existing sleep with the _id parameter specified in the request URL.</p>",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "ObjectId",
+            "optional": false,
+            "field": "id",
+            "description": "<p>The unique identifier of the sleep.</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 2xx": [
+          {
+            "group": "Success 2xx",
+            "optional": false,
+            "field": "200",
+            "description": "<p>Successful Request</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 204 No Content\n{\n    \"message\" : \"Sleep deleted\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "404",
+            "description": "<p>Sleep Not Found</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "400",
+            "description": "<p>Bad Request <br>A wrong formated <code>id</code> was sent</p>"
+          }
+        ],
+        "Error 5xx": [
+          {
+            "group": "Error 5xx",
+            "optional": false,
+            "field": "500",
+            "description": "<p>Internal Server Error</p>"
+          }
+        ]
+      }
+    },
+    "filename": "routes/sleep.js",
+    "groupTitle": "Sleep"
+  },
+  {
+    "type": "get",
+    "url": "/sleep",
+    "title": "Get All Sleep",
+    "name": "get_all_sleep",
+    "group": "Sleep",
+    "version": "1.0.0",
+    "description": "<p>This request returns a list of all sleep.</p>",
+    "success": {
+      "fields": {
+        "Sleep Fields": [
+          {
+            "group": "Sleep Fields",
+            "type": "String",
+            "optional": false,
+            "field": "_id",
+            "description": "<p>Unique Mongo generated id of the sleep.</p>"
+          },
+          {
+            "group": "Sleep Fields",
+            "type": "String",
+            "optional": false,
+            "field": "date",
+            "description": "<p>Date (yyyy-mm-dd) of the sleep.</p>"
+          },
+          {
+            "group": "Sleep Fields",
+            "type": "String",
+            "optional": false,
+            "field": "bedTime",
+            "description": "<p>Time (hh:mm) of the sleep.</p>"
+          },
+          {
+            "group": "Sleep Fields",
+            "type": "number",
+            "optional": false,
+            "field": "interval",
+            "description": "<p>Time measured in hours of sleep.</p>"
+          },
+          {
+            "group": "Sleep Fields",
+            "type": "String",
+            "optional": false,
+            "field": "type",
+            "description": "<p>We can specify what kind of sleep it was. For now, we should support one of [&quot;restless&quot;, &quot;normal&quot;].</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n[\n    {\n        \"_id\": \"573ec098e85f5601f611322b\",\n        \"date\": \"2018-04-02\",\n        \"bedTime\": \"21:30\",\n        \"interval\": 9,\n        \"type\": \"normal\"\n    }\n]",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "Error 5xx": [
+          {
+            "group": "Error 5xx",
+            "optional": false,
+            "field": "500",
+            "description": "<p>Internal Server Error</p>"
+          }
+        ]
+      }
+    },
+    "filename": "routes/sleep.js",
+    "groupTitle": "Sleep"
+  },
+  {
+    "type": "get",
+    "url": "/sleep/id",
+    "title": "Get Sleep",
+    "name": "get_sleep",
+    "group": "Sleep",
+    "version": "1.0.0",
+    "description": "<p>This request returns the sleep specified by the unique ID in the request URL</p>",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "ObjectId",
+            "optional": false,
+            "field": "id",
+            "description": "<p>The unique identifier of the sleep.</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 2xx": [
+          {
+            "group": "Success 2xx",
+            "optional": false,
+            "field": "200",
+            "description": "<p>OK</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n    \"_id\": \"573ec098e85f5601f611322b\",\n    \"date\": \"2018-04-02\",\n    \"bedTime\": \"21:30\",\n    \"interval\": 9,\n    \"type\": \"normal\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "404",
+            "description": "<p>Sleep Not Found</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "400",
+            "description": "<p>Bad Request <br>Wrongly formated <code>id</code> was sent.</p>"
+          }
+        ],
+        "Error 5xx": [
+          {
+            "group": "Error 5xx",
+            "optional": false,
+            "field": "500",
+            "description": "<p>Internal Server Error</p>"
+          }
+        ]
+      }
+    },
+    "filename": "routes/sleep.js",
+    "groupTitle": "Sleep"
+  },
+  {
+    "type": "put",
+    "url": "/sleep/id",
+    "title": "Update Sleep",
+    "name": "update_sleep",
+    "group": "Sleep",
+    "version": "1.0.0",
+    "description": "<p>This request updates an existing sleep using the json body provided and the _id parameter specified in the request URL. For consistency the json may include keys like in the example below.</p>",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "ObjectId",
+            "optional": false,
+            "field": "id",
+            "description": "<p>The unique identifier of the sleep.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Edit Example:",
+          "content": "{\n    \"bedTime\": \"22:00\",\n    \"interval\": 7,\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "fields": {
+        "Success 2xx": [
+          {
+            "group": "Success 2xx",
+            "optional": false,
+            "field": "201",
+            "description": "<p>Sleep Edited</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 201 Created\nLocation : /api/sleep/<ObjectId>\n{\n  \"message\": \"Sleep edited\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "404",
+            "description": "<p>Sleep not Found</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "400",
+            "description": "<p>Bad Request <br>Wrongly formated <code>json</code> was sent.</p>"
+          }
+        ],
+        "Error 5xx": [
+          {
+            "group": "Error 5xx",
+            "optional": false,
+            "field": "500",
+            "description": "<p>Internal Server Error</p>"
+          }
+        ]
+      }
+    },
+    "filename": "routes/sleep.js",
+    "groupTitle": "Sleep"
+  }
+] });
